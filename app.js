@@ -16,8 +16,11 @@ async function main (){
   console.log('DB connected')
 }
 
+
+// Importing routers
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const catalogRouter = require('./routes/catalog')
 
 const app = express();
 
@@ -25,14 +28,22 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+
+// Essential third-party middlewares
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Routers middlewares
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/catalog',catalogRouter)
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
