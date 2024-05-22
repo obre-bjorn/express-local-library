@@ -4,11 +4,12 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+require("dotenv").config()
 
 
 //Connect to mongoDB
 mongoose.set("strictQuery", false)
-const mongoDB = 'mongodb+srv://obre:adminobre@cluster0.vo8ijwg.mongodb.net/local_library?retryWrites=true&w=majority&appName=Cluster0'
+const mongoDB = process.env.MONGODB_URI
 
 main().catch(err => console.log(err))
 async function main (){
