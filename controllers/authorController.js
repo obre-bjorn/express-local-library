@@ -144,11 +144,18 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 //Display Author update form on GET
-exports.author_update_get = asyncHandler ( async (res,req,next)=>[
-    res.send('NOT IMPLEMENTED: Author update GET')
-])
+exports.author_update_get = asyncHandler ( async (req,res,next)=>{
+
+  const author = await Author.findById(req.params.id).exec()
+
+  res.render("author_form",{
+    title: "Update Author",
+    author
+  })
+
+})
 
 //Handle author update on POST
-exports.author_update_post = asyncHandler (async (res,req,next) =>{
+exports.author_update_post = asyncHandler (async (req,res,next) =>{
     res.send('NOT IMPLEMENTED: Author update POST')
 } )
